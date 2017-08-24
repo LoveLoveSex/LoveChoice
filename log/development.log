@@ -1,0 +1,95 @@
+  [1m[35m (8.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (6.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7597189066431778170)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to DeviseCreateUsers (20170824091024)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" inet, "last_sign_in_ip" inet, "confirmation_token" character varying, "confirmed_at" timestamp, "confirmation_sent_at" timestamp, "unconfirmed_email" character varying, "failed_attempts" integer DEFAULT 0 NOT NULL, "unlock_token" character varying, "locked_at" timestamp, "first_name" character varying NOT NULL, "last_name" character varying NOT NULL, "age" integer NOT NULL, "sex" integer DEFAULT 0 NOT NULL, "birthday" timestamp NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")[0m
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170824091024"]]
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2017-08-24 09:39:55.939398"], ["updated_at", "2017-08-24 09:39:55.939398"]]
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(7597189066431778170)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 192.168.160.1 at 2017-08-24 18:43:53 +0900
+Cannot render console from 192.168.160.1! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (0.7ms)
+Completed 500 Internal Server Error in 820ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `user_signed_in?' for #<#<Class:0x0055add9237350>:0x0055add91ff1f8>):
+    11:   <body>
+    12:     <header>
+    13:       <nav>
+    14:         <% if user_signed_in? %>
+    15:           <strong><%= link_to current_user.username, pages_show_path %></strong>
+    16:           <%= link_to 'プロフィール変更', edit_user_registration_path %>
+    17:           <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+  
+app/views/layouts/application.html.erb:14:in `_app_views_layouts_application_html_erb___3452579374632902828_47102579800500'
+Started GET "/" for 192.168.160.1 at 2017-08-24 18:57:52 +0900
+Cannot render console from 192.168.160.1! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (0.8ms)
+Completed 500 Internal Server Error in 275ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `user_signed_in?' for #<#<Class:0x00563eb9e4fba8>:0x00563eb9e38f48>):
+    11:   <body>
+    12:     <header>
+    13:       <nav>
+    14:         <% if user_signed_in? %>
+    15:           <strong><%= link_to current_user.username, pages_show_path %></strong>
+    16:           <%= link_to 'プロフィール変更', edit_user_registration_path %>
+    17:           <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+  
+app/views/layouts/application.html.erb:14:in `_app_views_layouts_application_html_erb__311793852280922898_47413702799000'
+Started GET "/" for 192.168.160.1 at 2017-08-24 19:01:36 +0900
+Cannot render console from 192.168.160.1! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (0.8ms)
+Completed 500 Internal Server Error in 234ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `new_user_registration_path' for #<#<Class:0x00565330f3eda8>:0x00565330f20998>):
+    16:           <%#= link_to 'プロフィール変更', edit_user_registration_path %>
+    17:           <%#= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+    18:         <%# else %>
+    19:           <%= link_to 'サインアップ', new_user_registration_path %>
+    20:           <%= link_to 'ログイン', new_user_session_path %>
+    21:         <%# end %>
+    22:       </nav>
+  
+app/views/layouts/application.html.erb:19:in `_app_views_layouts_application_html_erb__1464304108757106271_47457651228080'
+Started GET "/" for 192.168.160.1 at 2017-08-24 19:04:06 +0900
+Cannot render console from 192.168.160.1! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 265ms (Views: 254.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for 192.168.160.1 at 2017-08-24 19:04:48 +0900
+Cannot render console from 192.168.160.1! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.3ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (46.3ms)
+Completed 200 OK in 140ms (Views: 61.9ms | ActiveRecord: 9.3ms)
+
+
