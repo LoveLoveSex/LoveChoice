@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_many :user_hotels
-  has_many :users through: :user_hotels
+  has_many :users, through: :user_hotels
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
