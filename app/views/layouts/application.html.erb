@@ -13,7 +13,7 @@
       <nav>
         <%= link_to "ホテル一覧", hotels_path %>
         <% if user_signed_in? %>
-          <strong><%= link_to current_user.first_name, home_show_path %></strong>
+          <strong><%= link_to "ようこそ#{current_user.first_name}様", home_show_path %></strong>
         <% else %>
           <%= link_to 'サインイン', new_user_session_path %>
         <% end %>
