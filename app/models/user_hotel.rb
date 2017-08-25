@@ -1,0 +1,2 @@
+class UserHotel < ApplicationRecord
+end

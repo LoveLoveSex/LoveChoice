@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170824091024) do
+ActiveRecord::Schema.define(version: 20170825072726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "hotels", force: :cascade do |t|
+    t.string "image"
+    t.string "name"
+    t.text "summary"
+    t.string "hotel_url"
+    t.string "street_address"
+    t.string "phone_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_hotels", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "hotel_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -33,11 +51,10 @@ ActiveRecord::Schema.define(version: 20170824091024) do
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
-    t.string "first_name", null: false
-    t.string "last_name", null: false
-    t.integer "age", null: false
+    t.string "first_name", default: "太郎", null: false
+    t.string "last_name", default: "山田", null: false
     t.integer "sex", default: 0, null: false
-    t.datetime "birthday", null: false
+    t.datetime "birthday", default: "2017-08-24 15:09:07", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
