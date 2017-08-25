@@ -1,14 +1,15 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @hotel.name %>
+<strong>Name:</strong>
+<%= @hotel.name %>
 </p>
 
 <p>
-  <strong>Summary:</strong>
-  <%= @hotel.summary %>
+<strong>Summary:</strong>
+<%= @hotel.summary %>
 </p>
 
-<%= link_to 'Edit', edit_hotel_path(@hotel) %> |
-<%= link_to 'Back', hotels_path %>
+<% if admin? %>
+  <%= link_to 'Edit', edit_hotel_path(@hotel) %>
+<% end %>
