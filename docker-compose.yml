@@ -8,6 +8,7 @@ services:
   web:
     build: .
     command: bundle exec puma --config config/puma.rb
+    env_file: .env
     volumes:
       - .:/app
       - bundle_install:/app/vendor/bundle
