@@ -1,14 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @hotel.name %>
-</p>
+<h1><%= @hotel.name %></h1>
 
-<p>
-  <strong>Summary:</strong>
-  <%= @hotel.summary %>
-</p>
+<%= markdown(@hotel.summary) %>
 
-<%= link_to 'Edit', edit_hotel_path(@hotel) %> |
-<%= link_to 'Back', hotels_path %>
+<% if admin? %>
+  <%= link_to 'Edit', edit_hotel_path(@hotel) %>
+<% end %>

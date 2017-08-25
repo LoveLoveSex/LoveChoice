@@ -1,2 +1,4 @@
 <h1>Home#show</h1>
-<p>Find me in app/views/home/show.html.erb</p>
+
+<%= link_to 'プロフィール変更', edit_user_registration_path %>
+<%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>

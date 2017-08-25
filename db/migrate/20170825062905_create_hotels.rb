@@ -1,6 +1,7 @@
 class CreateHotels < ActiveRecord::Migration[5.1]
   def change
     create_table :hotels do |t|
+      t.integer :user_id_to_manage
       t.string :image
       t.string :name
       t.text :summary

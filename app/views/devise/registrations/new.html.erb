@@ -5,7 +5,7 @@
 
   <div class="field">
     <%= f.label :last_name, "牲:"%><br />
-    <%= f.text_field :last_name %>
+    <%= f.text_field :last_name, autofocus: true %>
   </div>
 
   <div class="field">
@@ -15,7 +15,8 @@
 
   <div class="field">
     <%= f.label :sex, "性別:" %><br />
-    <%= f.number_field :sex %>
+    <%= f.radio_button :sex, "men" %> 男
+    <%= f.radio_button :sex, "women" %> 女
   </div>
 
   <div class="field">
@@ -25,13 +26,13 @@
 
   <div class="field">
     <%= f.label :email, "メールアドレス:" %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.email_field :email %>
   </div>
 
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <em>(最小文字数: <%= @minimum_password_length %>)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
