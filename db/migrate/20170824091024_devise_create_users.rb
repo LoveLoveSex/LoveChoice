@@ -31,11 +31,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.datetime :locked_at
 
       #User Info
-      t.string :first_name, null: false
-      t.string :last_name, null: false
-      t.integer :age, null: false
+      t.string :first_name, null: false, default: "太郎"
+      t.string :last_name, null: false, default: "山田"
       t.integer :sex, null: false, default: 0
-      t.datetime :birthday, null: false
+      t.datetime :birthday, null: false, default: Time.now
 
       t.timestamps null: false
     end
