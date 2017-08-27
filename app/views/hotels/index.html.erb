@@ -2,6 +2,10 @@
 
 <h1>Hotels</h1>
 
+<% if admin? %>
+  <%= link_to 'New Hotel', new_hotel_path %>
+<% end %>
+
 <table>
   <thead>
     <tr>
@@ -20,4 +24,3 @@
 
 <br>
 
-<%= link_to 'New Hotel', new_hotel_path %>

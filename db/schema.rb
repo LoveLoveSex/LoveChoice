@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20170825124656) do
   enable_extension "plpgsql"
 
   create_table "hotels", force: :cascade do |t|
+    t.integer "user_id_to_manage"
     t.string "image"
     t.string "name"
     t.text "summary"

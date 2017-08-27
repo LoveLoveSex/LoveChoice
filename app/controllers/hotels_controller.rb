@@ -1,4 +1,5 @@
 class HotelsController < ApplicationController
+  authorize_resource
   before_action :set_hotel, only: [:show, :edit, :update, :destroy]
 
   # GET /hotels
@@ -62,13 +63,13 @@ class HotelsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_hotel
-      @hotel = Hotel.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_hotel
+    @hotel = Hotel.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def hotel_params
-      params.require(:hotel).permit(:name, :summary)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def hotel_params
+    params.require(:hotel).permit( :user_id_to_manage, :name, :summary, :hotel_url, :street_address, :phone_number)
+  end
 end
