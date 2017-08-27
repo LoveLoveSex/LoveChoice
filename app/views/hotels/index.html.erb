@@ -2,25 +2,11 @@
 
 <h1>Hotels</h1>
 
-<% if admin? %>
-  <%= link_to 'New Hotel', new_hotel_path %>
-<% end %>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @hotels.each do |hotel| %>
-      <tr>
-        <td><%= link_to hotel.name, hotel %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<ul>
+  <% @hotels.each do |hotel| %>
+    <li><%= link_to hotel.name, hotel %></li>
+  <% end %>
+</ul>
 
 <br>
 
