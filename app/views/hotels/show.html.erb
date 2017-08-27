@@ -4,6 +4,6 @@
 
 <%= markdown(@hotel.summary) %>
 
-<% if admin? %>
+<% if can? :update, @hotel %>
   <%= link_to 'Edit', edit_hotel_path(@hotel) %>
 <% end %>
