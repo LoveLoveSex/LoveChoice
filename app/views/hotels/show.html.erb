@@ -4,6 +4,19 @@
 
 <%= markdown(@hotel.summary) %>
 
+<!-- お気に入り機能 -->
+<% unless @favorite %>
+  <%= form_tag("/favorite_hotel", method: "post") do %>
+    <%= hidden_field_tag 'hotel_id', @hotel.id %>
+    <%= submit_tag("お気に入り") %>
+  <% end %>
+<% else %>
+  <%= form_tag("/favorite_hotel", method: "delete") do %>
+    <%= hidden_field_tag 'hotel_id', @hotel.id %>
+    <%= submit_tag("解除") %>
+  <% end %>
+<% end %>
+
 <% if can? :update, @hotel %>
   <%= link_to 'Edit', edit_hotel_path(@hotel) %>
 <% end %>

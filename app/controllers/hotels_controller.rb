@@ -11,6 +11,7 @@ class HotelsController < ApplicationController
   # GET /hotels/1
   # GET /hotels/1.json
   def show
+    @favorite = @hotel.users.where(id: current_user.id).exists?
   end
 
   # GET /hotels/new
@@ -60,6 +61,19 @@ class HotelsController < ApplicationController
       format.html { redirect_to hotels_url, notice: 'Hotel was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def search
+    @hotels = Hotel.search(params["word"])#.page(params[:page]).per(25)
+    render :action => "index"
+  end
+
+  def favorite_hotel
+    UserHotel.create(user: current_user, hotel_id: params["hotel_id"].to_i)
+  end
+
+  def delete_favorite_hotel
+    UserHotel.find_by(user: current_user, hotel_id: params["hotel_id"].to_i).destroy
   end
 
   private

@@ -1,26 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Hotels</h1>
+<h1>ホテル一覧</h1>
 
-<% if admin? %>
-  <%= link_to 'New Hotel', new_hotel_path %>
+
+検索
+<%= form_tag("/search_hotel", method: "post") do %>
+  <%= text_field_tag 'word' %>
+  <%= submit_tag("検索") %>
 <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @hotels.each do |hotel| %>
-      <tr>
-        <td><%= link_to hotel.name, hotel %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<ul>
+  <% @hotels.each do |hotel| %>
+    <li><%= link_to hotel.name, hotel %></li>
+  <% end %>
+</ul>
 
 <br>
 
