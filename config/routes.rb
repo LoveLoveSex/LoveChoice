@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   get 'home/show'
+  post '/search_hotel', to: 'hotels#search'
   post '/favorite_hotel', to: 'hotels#favorite_hotel'
   delete '/favorite_hotel', to: 'hotels#delete_favorite_hotel'
 

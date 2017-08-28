@@ -1,6 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Hotels</h1>
+<h1>ホテル一覧</h1>
+
+
+検索
+<%= form_tag("/search_hotel", method: "post") do %>
+  <%= text_field_tag 'word' %>
+  <%= submit_tag("検索") %>
+<% end %>
 
 <ul>
   <% @hotels.each do |hotel| %>

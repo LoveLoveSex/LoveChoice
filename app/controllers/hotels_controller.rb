@@ -63,6 +63,11 @@ class HotelsController < ApplicationController
     end
   end
 
+  def search
+    @hotels = Hotel.search(params["word"])#.page(params[:page]).per(25)
+    render :action => "index"
+  end
+
   def favorite_hotel
     UserHotel.create(user: current_user, hotel_id: params["hotel_id"].to_i)
   end
