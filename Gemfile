@@ -37,6 +37,7 @@ gem 'devise' #login
 gem 'cancancan' #権限設定
 gem 'rails_admin' #admin_page
 gem 'redcarpet' #markdown
+gem 'rails-i18n' #error message 国際化
 
 gem 'jquery-rails' #javascript lib
 
