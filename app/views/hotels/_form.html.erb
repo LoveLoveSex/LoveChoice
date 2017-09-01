@@ -41,6 +41,15 @@
     <%= form.telephone_field :phone_number, id: :hotel_phone_number %>
   </div>
 
+  <div class="field">
+    <%= form.label :lat, "緯度" %>
+    <%= form.telephone_field :lat, id: :hotel_lat %>
+  </div>
+  <div class="field">
+    <%= form.label :lng, "経度" %>
+    <%= form.telephone_field :lng, id: :hotel_lng %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

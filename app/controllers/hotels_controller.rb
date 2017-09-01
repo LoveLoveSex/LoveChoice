@@ -6,6 +6,15 @@ class HotelsController < ApplicationController
   # GET /hotels.json
   def index
     @hotels = Hotel.all
+    @map = []
+    @hotels.each do |hotel|
+      @map << {
+        name: hotel.name,
+        lat: hotel.lat.to_f,
+        lng: hotel.lng.to_f
+      }
+    end
+    @map = @map.to_json
   end
 
   # GET /hotels/1
@@ -26,30 +35,37 @@ class HotelsController < ApplicationController
   # POST /hotels
   # POST /hotels.json
   def create
-    @hotel = Hotel.new(hotel_params)
+    if can? :create, @hotel
+      @hotel = Hotel.new(hotel_params)
 
-    respond_to do |format|
-      if @hotel.save
-        format.html { redirect_to @hotel, notice: 'Hotel was successfully created.' }
-        format.json { render :show, status: :created, location: @hotel }
-      else
-        format.html { render :new }
-        format.json { render json: @hotel.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @hotel.save
+          format.html { redirect_to @hotel, notice: 'Hotel was successfully created.' }
+          format.json { render :show, status: :created, location: @hotel }
+        else
+          format.html { render :new }
+          format.json { render json: @hotel.errors, status: :unprocessable_entity }
+        end
       end
+      return 403
     end
   end
 
   # PATCH/PUT /hotels/1
   # PATCH/PUT /hotels/1.json
   def update
-    respond_to do |format|
-      if @hotel.update(hotel_params)
-        format.html { redirect_to @hotel, notice: 'Hotel was successfully updated.' }
-        format.json { render :show, status: :ok, location: @hotel }
-      else
-        format.html { render :edit }
-        format.json { render json: @hotel.errors, status: :unprocessable_entity }
+    if can? :update, @hotel
+      respond_to do |format|
+        if @hotel.update(hotel_params)
+          format.html { redirect_to @hotel, notice: 'Hotel was successfully updated.' }
+          format.json { render :show, status: :ok, location: @hotel }
+        else
+          format.html { render :edit }
+          format.json { render json: @hotel.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      return 403
     end
   end
 
@@ -84,6 +100,6 @@ class HotelsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def hotel_params
-    params.require(:hotel).permit( :user_id_to_manage, :name, :summary, :hotel_url, :street_address, :phone_number)
+    params.require(:hotel).permit( :user_id_to_manage, :name, :summary, :hotel_url, :street_address, :phone_number, :lat, :lng)
   end
 end

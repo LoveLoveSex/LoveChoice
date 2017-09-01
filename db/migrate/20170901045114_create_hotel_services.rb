@@ -5,6 +5,7 @@ class CreateHotelServices < ActiveRecord::Migration[5.1]
       t.string :name
       t.time :start_time
       t.time :end_time
+      t.integer :money
 
       t.timestamps
     end
