@@ -16,11 +16,12 @@ ActiveRecord::Schema.define(version: 20170901045114) do
   enable_extension "plpgsql"
 
   create_table "hotel_services", force: :cascade do |t|
-    t.integer "hotel_id"
-    t.string "name"
-    t.time "start_time"
-    t.time "end_time"
-    t.integer "money"
+    t.integer "hotel_id", null: false
+    t.string "name", null: false
+    t.time "start_time", null: false
+    t.time "end_time", null: false
+    t.integer "money", null: false
+    t.integer "category", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
