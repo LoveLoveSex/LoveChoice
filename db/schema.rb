@@ -10,19 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170825124656) do
+ActiveRecord::Schema.define(version: 20170901045114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "hotel_services", force: :cascade do |t|
+    t.integer "hotel_id", null: false
+    t.string "name", null: false
+    t.string "day_of_the_week"
+    t.integer "money", null: false
+    t.integer "category", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "hotels", force: :cascade do |t|
     t.integer "user_id_to_manage"
     t.string "image"
-    t.string "name"
+    t.string "name", null: false
     t.text "summary"
     t.string "hotel_url"
     t.string "street_address"
     t.string "phone_number"
+    t.decimal "lat", null: false
+    t.decimal "lng", null: false
+    t.integer "access_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -55,7 +68,7 @@ ActiveRecord::Schema.define(version: 20170825124656) do
     t.string "first_name", default: "太郎", null: false
     t.string "last_name", default: "山田", null: false
     t.integer "sex", default: 0, null: false
-    t.datetime "birthday", default: "2017-08-24 15:09:07", null: false
+    t.datetime "birthday", default: "2017-08-30 08:07:09", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "authority", default: 0, null: false

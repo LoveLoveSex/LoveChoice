@@ -3,11 +3,14 @@ class CreateHotels < ActiveRecord::Migration[5.1]
     create_table :hotels do |t|
       t.integer :user_id_to_manage
       t.string :image
-      t.string :name
+      t.string :name, null: false
       t.text :summary
       t.string :hotel_url
       t.string :street_address
       t.string :phone_number
+      t.decimal :lat, null: false
+      t.decimal :lng, null: false
+      t.integer :access_count, default: 0
 
       t.timestamps
     end

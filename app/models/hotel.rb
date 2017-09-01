@@ -2,6 +2,8 @@ class Hotel < ApplicationRecord
   has_many :user_hotels
   has_many :users, through: :user_hotels
 
+  has_many :hotel_services
+
   validates :name,    length: { maximum: 20 }
   validates :summary, presence: true
 

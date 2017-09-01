@@ -1,6 +1,12 @@
 class Ability
   include CanCan::Ability
 
+  #read ... 参照
+  #create ... 登録
+  #update ... 更新
+  #destroy ... 削除
+  #manage ... すべて
+
   def initialize(user)
     user ||= User.new # guest user (not logged in)
 
