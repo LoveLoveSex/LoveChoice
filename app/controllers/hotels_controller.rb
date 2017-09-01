@@ -7,9 +7,15 @@ class HotelsController < ApplicationController
   def index
     @hotels = Hotel.all
     @map = []
+    now_service = []
+
     @hotels.each do |hotel|
+      hotel.hotel_services.each do |service|
+        now_service << service if  service.day_of_the_week.split(',').include?(Date.today.wday.to_s)
+      end
+      name = "#{now_service[0].name}: #{now_service[0].money}円\n #{now_service[1].name}: #{now_service[1].money}円\n"
       @map << {
-        name: hotel.name,
+        name: name,
         lat: hotel.lat.to_f,
         lng: hotel.lng.to_f
       }
